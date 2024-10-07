@@ -553,7 +553,7 @@ namespace Distributions{
 		double sign, tmp;
 		arma::log_det(tmp, sign, Sigma ); //sign is not importantas det SHOULD be > 0 as for positive definiteness!
         
-        if(!Sigma.is_symmetric()) std::cout << "asymmetric in logPDFNormal2!!" << std::endl;
+        //if(!Sigma.is_symmetric()) std::cout << "asymmetric in logPDFNormal2!!" << std::endl;
 		return -0.5*(double)k*log(2.*M_PI) -0.5*tmp -0.5* arma::as_scalar( (x).t() * arma::inv_sympd(Sigma) * (x) );
 
 	}
@@ -565,7 +565,7 @@ namespace Distributions{
 
 		double sign, tmp;
 		arma::log_det(tmp, sign, Sigma ); //sign is not importantas det SHOULD be > 0 as for positive definiteness!
-        if(!Sigma.is_symmetric()) std::cout << "asymmetric in logPDFNormal3!!" << std::endl;
+        //if(!Sigma.is_symmetric()) std::cout << "asymmetric in logPDFNormal3!!" << std::endl;
 		return -0.5*(double)k*log(2.*M_PI) -0.5*tmp -0.5* arma::as_scalar( (x-m).t() * arma::inv_sympd(Sigma) * (x-m) );
 
 	}
@@ -585,7 +585,7 @@ namespace Distributions{
 		unsigned int k = rowCov.n_rows;
 		unsigned int d = colCov.n_rows;
         arma::mat tmp00 = arma::kron( colCov , rowCov );
-        if(!tmp00.is_symmetric()) std::cout << "asymmetric in logPDFNormal4!!" << std::endl;
+        //if(!tmp00.is_symmetric()) std::cout << "asymmetric in logPDFNormal4!!" << std::endl;
 		double logP = -0.5*(double)k*log(2.*M_PI) - 0.5 * arma::as_scalar( ( (x-m).t() * arma::inv_sympd( arma::kron( colCov , rowCov ) ) * (x-m) ) );
 
 		double sign, tmp;

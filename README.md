@@ -126,7 +126,7 @@ fit2 <- BayesMVP(Y=Y, X=X, X_0=X0,
 ```
 
 
-# References
+## References
 
 > Leonardo Bottolo, Marco Banterle, Sylvia Richardson, Mika Ala-Korpela, Marjo-Riitta Järvelin, Alex Lewin (2021).
 > A computationally efficient Bayesian seemingly unrelated regressions model for high-dimensional quantitative trait loci discovery.

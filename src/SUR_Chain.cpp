@@ -1950,10 +1950,10 @@ double SUR_Chain::sampleBetaGivenSigmaRho( arma::mat& mutantBeta , const arma::m
             }// end if VS_IN_k is non-empty
         }// end foreach outcome
         
-        if(max(max(W_k)) > 1.0e+5)
+        /*if(max(max(W_k)) > 1.0e+5)
             std::cout << "sampleBeta: max(W_k.diag)=" << max(W_k.diag()) << "; max(mu_k)=" << max(mu_k) <<
             "; max(sigmaRho)=" << max(externalSigmaRho.diag()) <<
-            "; max(sigmaRho)=" << max(max(externalSigmaRho)) << std::endl;
+            "; max(sigmaRho)=" << max(max(externalSigmaRho)) << std::endl;*/
     } // end if mask is non-empty
     
     // if not gPrior, update the prior value here at the end

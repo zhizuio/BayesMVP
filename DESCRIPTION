@@ -23,6 +23,6 @@ Imports: Rcpp, xml2, igraph, Matrix, tikzDevice, stats, utils,
 Suggests: R.rsp, knitr, rmarkdown, BDgraph, data.table, plyr, scrime
 LazyData: true
 NeedsCompilation: yes
-Packaged: 2024-10-07 18:38:13 UTC; zhiz
+Packaged: 2024-10-07 19:49:36 UTC; zhiz
 Author: Zhi Zhao [aut, cre]
 Maintainer: Zhi Zhao <zhi.zhao@medisin.uio.no>

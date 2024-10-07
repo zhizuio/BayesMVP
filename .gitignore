@@ -1,0 +1,15 @@
+*.Rproj
+.Rproj.user
+.vscode/*
+.Rhistory
+.DS_Store
+
+BayesMVP/src/*.o
+BayesMVP/src/*.so
+BayesMVP/src/*.dll
+BayesMVP/src/symbols.rds
+BayesMVP/src/Makevars
+
+BayesMVP/autom4te.cache
+BayesMVP/build
+BayesMVP/hyperpar.xml

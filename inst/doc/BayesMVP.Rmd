@@ -1,0 +1,58 @@
+---
+title: "BayesMVP quick start"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{BayesMVP-tutorial}
+  \usepackage[utf8]{inputenc}
+---
+
+```{css, echo=FALSE}
+pre {
+  overflow-y: auto;
+}
+
+pre[class] {
+  max-height: 350px;
+}
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+options(rmarkdown.html_vignette.check_title = FALSE)
+```
+
+This R package is for high-dimensional multivariate Bayesian variable and covariance selection in Probit models, including methods in [Bottolo et al. (2021)](https://doi.org/10.1111/rssc.12490), [Zhao et al. (2021)](https://doi.org/10.18637/jss.v100.i11) and [Zhao et al. (2024)](https://doi.org/10.1093/jrsssc/qlad102). 
+
+## Installation
+
+Install the latest development version from [GitHub](https://github.com/zhizuio/BayesMVP)
+
+```r
+#install.packages("remotes")
+remotes::install_github("zhizuio/BayesMVP")
+```
+
+## Examples
+
+Here, we show a simulation example to run the BayesMVP mdoel with random effects.
+
+### Simulate data
+
+We design a network as the following figure (a) to construct a complex structure between $20$ response variables and $300$ predictors.
+It assumes that the responses are divided into six groups, and the first $120$ predictors are divided into nine groups.
+
+
+## References
+
+> Leonardo Bottolo, Marco Banterle, Sylvia Richardson, Mika Ala-Korpela, Marjo-Riitta Järvelin, Alex Lewin (2021).
+> A computationally efficient Bayesian seemingly unrelated regressions model for high-dimensional quantitative trait loci discovery.
+> _Journal of the Royal Statistical Society: Series C (Applied Statistics)_, 70(4):886-908. DOI: [10.1111/rssc.12490](https://doi.org/10.1111/rssc.12490).
+
+> Zhi Zhao, Marco Banterle, Leonardo Bottolo, Sylvia Richardson, Alex Lewin, Manuela Zucknick (2021).
+> BayesMVP: An R package for high-dimensional multivariate Bayesian variable and covariance selection in linear regression.
+> _Journal of Statistical Software_, 100(11):1-32. DOI: [10.18637/jss.v100.i11](https://doi.org/10.18637/jss.v100.i11).
+
+> Zhi Zhao, Marco Banterle, Alex Lewin, Manuela Zucknick (2024).
+> Multivariate Bayesian structured variable selection for pharmacogenomic studies.
+> _Journal of the Royal Statistical Society: Series C (Applied Statistics)_, 73(2):420-443 qlad102. DOI: [10.1093/jrsssc/qlad102](https://doi.org/10.1093/jrsssc/qlad102).

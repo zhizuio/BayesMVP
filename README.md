@@ -100,7 +100,9 @@ fit2 <- BayesMVP(Y=Y, X=X, X_0=X0,
 
 ## Simulation 2
 
-Load another simulated data set with random $\Gamma$ and independent responses (see source code in file `BayesMVP/data-raw/simData2.R`) and run the iMVP-Ber model. 
+Load another simulated data set with random $\Gamma$ and independent responses (see source code in file `BayesMVP/data-raw/simData2.R`) and run the BayesMVP models. 
+
+### iMVP-Ber model
 
 ```r
 rm(list=ls())
@@ -123,6 +125,44 @@ fit2 <- BayesMVP(Y=Y, X=X, X_0=X0,
                  betaPrior = "reGroup",
                  output_CPO = TRUE,
                  maxThreads = 3)
+```
+### Lasso model
+
+```r
+rm(list=ls())
+library(BayesMVP)
+data("simData2", package = "BayesMVP")
+data("simDataTest2", package = "BayesMVP")
+attach(simData)
+
+library(glmnet)
+set.seed(123)
+fit.y <- rep(list(NA), ncol(Y))
+betas <- matrix(nrow = ncol(X0) + ncol(X), ncol = ncol(Y))
+for(k in 1:ncol(Y)) {
+  fit.y[[k]] <- cv.glmnet(x = cbind(X0, X), 
+                          y = Y[, k],
+                          family = "binomial",
+                          penalty.factor = c(rep(0, ncol(X0)), rep(1, ncol(X))))
+  betas[, k] <- fit.y[[k]]$glmnet.fit$beta[, fit.y[[k]]$lambda==fit.y[[k]]$lambda.min]
+}
+#plot(fit.y[[1]])
+#fit.y[[1]]$lambda.min
+
+# summarize results
+(accuracy_b=sum((betas[-c(1:4),]!=0) == (simData2$Gamma==1))/prod(dim(simData2$Gamma)))
+(sensitivity_b=sum((betas[-c(1:4),]!=0) & simData2$Gamma==1)/sum(simData2$Gamma==1))
+(specificity_b=sum((betas[-c(1:4),]==0) & simData2$Gamma==0)/sum(simData2$Gamma==0))
+
+(beta_rmse <- sqrt( mean((betas[-c(1:4),] - simData2$B)^2) ))
+z_pred <- cbind(X0, X) %*% betas
+(accuracy_y=sum((z_pred>0) == (simData2$Y==1))/prod(dim(z_pred)))
+(sensitivity_y=sum(z_pred>0 & simData2$Y==1)/sum(simData2$Y==1))
+(specificity_y=sum(z_pred<=0 & simData2$Y==0)/sum(simData2$Y==0))
+z_test <- cbind(simDataTest2$X0, simDataTest2$X) %*% betas
+(accuracy_y_test=sum((z_test>0) == (simDataTest2$Y==1))/prod(dim(z_test)))
+(sensitivity_y_test=sum(z_test>0 & simDataTest2$Y==1)/sum(simDataTest2$Y==1))
+(specificity_y_test=sum(z_test<=0 & simDataTest2$Y==0)/sum(simDataTest2$Y==0))
 ```
 
 

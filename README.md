@@ -133,7 +133,7 @@ rm(list=ls())
 library(BayesMVP)
 data("simData2", package = "BayesMVP")
 data("simDataTest2", package = "BayesMVP")
-attach(simData)
+attach(simData2)
 
 library(glmnet)
 set.seed(123)
